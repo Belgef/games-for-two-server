@@ -21,6 +21,14 @@ module.exports = (io) => {
       socket.to(id).emit('sendData', name, playerList)
     })
 
+    socket.on('setGame', (room, state) => {
+      socket.to(room).emit('setGame', state)
+    })
+
+    socket.on('move', (i, j, room) => {
+      socket.to(room).emit('move', i, j)
+    })
+
     socket.on('disconnect', () => console.log('disconnected'));
 
   })
